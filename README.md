@@ -7,4 +7,6 @@
 
 >3. $ npm install -D nodemon
 
+>4. $ npm install moment
+
 [Express JS Crash Course](https://youtu.be/L72fhGm1tfE)
