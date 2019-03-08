@@ -1,30 +1,25 @@
 const express = require('express');
 const path = require('path');
-const moment = require('moment');
-const members = require('./Members');
+const logger = require('./middleware/logger');
 
 const app = express();
 
-const logger = (req, res, next) => {
-  console.log(`${req.protocol}://${req.get('host')}${req.originalUrl}: ${moment().format()}`);
-  //http://localhost:5000/api/members: 2019-03-07T17:34:47-05:00
-  next();
-};
-
 //! Init middleware
-app.use(logger);
+// app.use(logger);
 
-  //! Get all members
-app.get('/api/members', function (req, res) {
-  res.json(members);
-});
+//! Body Parser Middleware remember USE ()
+app.use(express.json());
+//! handle URL code data
+app.use(express.urlencoded({ extended: false}));
 
 //! set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
+app.use('/api/members', require('./routes/api/members'));
+
+// app.get('/', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
 
 const PORT = process.env.PORT || 5000;
 

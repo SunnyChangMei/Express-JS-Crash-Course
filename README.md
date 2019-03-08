@@ -9,4 +9,6 @@
 
 >4. $ npm install moment
 
+>5. $ npm install uuid
+
 [Express JS Crash Course](https://youtu.be/L72fhGm1tfE)
