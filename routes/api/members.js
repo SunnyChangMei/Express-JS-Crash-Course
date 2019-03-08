@@ -11,9 +11,9 @@ router.get('/', function (req, res) {
 //! Get single member
 router.get('/:id', (req, res) => {
   const id = req.params.id;
-  const found = members.some(member => member.id === parseInt(id));
+  const found = members.some(member => member.id === Number(id));
   if (found) {
-    res.json(members.filter(member => member.id === parseInt(id)));
+    res.json(members.filter(member => member.id === Number(id)));
   } else {
     res.status(400).json({
       msg: `No member with the id of ${id}`
@@ -31,18 +31,47 @@ router.post('/', (req, res) => {
     status: 'active'
   };
   if (!newMember.name || !newMember.email) {
-    return res.status(400).json({msg: 'please include a name and email'});
+    return res.status(400).json({
+      msg: 'please include a name and email'
+    });
   }
   members.push(newMember);
   res.json(members);
 });
 
-//! Update Member
-router.get('/:id', (req, res) => {
+//! Update Member use PUT
+router.put('/:id', (req, res) => {
   const id = req.params.id;
-  const found = members.some(member => member.id === parseInt(id));
+  const found = members.some(member => member.id === Number(id));
+
   if (found) {
-    res.json(members.filter(member => member.id === parseInt(id)));
+    const updateMember = req.body;
+    members.forEach(member => {
+      if (member.id === Number(id)) {
+        member.name = updateMember.name ? updateMember.name : member.name;
+        member.email = updateMember.email ? updateMember.email : member.email;
+        res.json({
+          msg: 'Member updated',
+          member
+        });
+      }
+    });
+  } else {
+    res.status(400).json({
+      msg: `No member with the id of ${id}`
+    });
+  }
+});
+
+//! Delete member
+router.delete('/:id', (req, res) => {
+  const id = req.params.id;
+  const found = members.some(member => member.id === Number(id));
+  if (found) {
+    res.json({
+      msg: 'Member deleted',
+      members: members.filter(member => member.id !== Number(id))
+    });
   } else {
     res.status(400).json({
       msg: `No member with the id of ${id}`
