@@ -7,7 +7,7 @@ const members = require('./Members');
 const app = express();
 
 //! Init middleware
-// app.use(logger);
+app.use(logger);
 
 //! Handlebars Middleware
 app.engine('handlebars', expHBS({

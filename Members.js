@@ -1,6 +1,6 @@
 const members = [{
   id: 1,
-  name: 'Winston Axelrod',
+  name: 'Bobby Axelrod',
   email: 'bobby@gmail.com',
   status: 'active'
 },
