@@ -1,14 +1,16 @@
 <!-- Headings -->
 # Express-JS-Crash-Course
 
->1. $ npm init -y
+> $ npm init -y
 
->2. $ npm install express --save
+>$ npm install express --save
 
->3. $ npm install -D nodemon
+>$ npm install -D nodemon
 
->4. $ npm install moment
+>$ npm install moment
 
->5. $ npm install uuid
+>$ npm install uuid
+
+>$ npm install express-handlebars
 
 [Express JS Crash Course](https://youtu.be/L72fhGm1tfE)

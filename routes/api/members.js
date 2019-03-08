@@ -36,7 +36,10 @@ router.post('/', (req, res) => {
     });
   }
   members.push(newMember);
-  res.json(members);
+  //! dont want to show raw json data
+  // res.json(members);
+  //! redirect back to home display new member
+  res.redirect('/');
 });
 
 //! Update Member use PUT
